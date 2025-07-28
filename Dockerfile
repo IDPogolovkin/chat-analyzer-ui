@@ -1,5 +1,5 @@
 # Stage 1: Build the React app
-FROM node:18-alpine as build
+FROM node:22-alpine as build
 WORKDIR /app
 # Install dependencies
 COPY package*.json ./
@@ -14,7 +14,7 @@ ENV REACT_APP_API_URL=${REACT_APP_API_URL}
 RUN npm run build
 
 # Stage 2: Run the production build
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 # Copy only the build output from the previous stage
 COPY --from=build /app/build ./build
